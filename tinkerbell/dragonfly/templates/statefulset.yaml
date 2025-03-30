@@ -24,7 +24,6 @@ spec:
               mountPath: /var/lib/dragonfly
           ports:
             - containerPort: {{ .Values.service.port }}
-              hostPort: {{ .Values.service.port }}
               name: {{ .Values.deployment.portName }}
           resources:
             limits:
