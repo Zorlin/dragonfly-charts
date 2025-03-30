@@ -1,3 +1,9 @@
+dragonfly:
+  server:
+    name: dragonfly
+    service:
+      port: 3000
+
 stack:
   enabled: true
   name: tink-stack
