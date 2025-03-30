@@ -15,5 +15,6 @@ spec:
     {{- toYaml .Values.persistence.accessModes | nindent 4 }}
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Values.persistence.storageClass }}
-  local:
+  hostPath:
     path: {{ .Values.persistence.path }}
+    type: DirectoryOrCreate
