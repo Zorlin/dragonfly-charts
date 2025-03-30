@@ -37,3 +37,6 @@ dependencies:
   - name: hegel
     version: "0.4.1"
     repository: "file://../hegel"
+  - name: dragonfly
+    version: "0.1.0"
+    repository: "file://../dragonfly"
