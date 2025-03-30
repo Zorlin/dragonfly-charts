@@ -1,0 +1,35 @@
+deploy: true
+name: dragonfly
+image: docker.io/zorlin/dragonfly:v0.1.0
+imagePullPolicy: IfNotPresent
+replicas: 1
+service:
+  port: 3000
+deployment:
+  port: 3000
+  portName: dragonfly-http
+persistence:
+  enabled: true
+  storageClass: local-storage
+  size: 20Gi
+  existingClaim: ""
+  localPersistentVolume:
+    storageClassName: local-storage
+    path: /var/lib/dragonfly
+    name: dragonfly-artifacts
+    accessModes:
+      - ReadWriteMany
+    size: 20Gi
+    extraLabels: {}
+resources:
+  limits:
+    cpu: 2000m
+    memory: 2048Mi
+  requests:
+    cpu: 100m
+    memory: 1024Mi
+rbac:
+  type: Role # or ClusterRole
+  name: dragonfly-role # or dragonfly-cluster-role
+  bindingName: dragonfly-rolebinding # or dragonfly-cluster-rolebinding
+nodeSelector: {}
