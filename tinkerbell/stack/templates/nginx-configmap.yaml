@@ -15,6 +15,17 @@ data:
     user root;
 
     http {
+      server {
+        listen 3000;
+        location / {
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          resolver $POD_NAMESERVER;
+          set $dragonfly_dns {{ .Values.dragonfly.server.name }}.{{ .Release.Namespace }}.svc.{{ .Values.stack.clusterDomain }}.; # needed in Kubernetes for dynamic DNS resolution
+
+          proxy_pass http://$dragonfly_dns:{{ .Values.dragonfly.server.service.port }};
+        }
+      }
       {{- if or (not .Values.smee.hostNetwork) (not .Values.smee.deploy) }}
       server {
         listen {{ .Values.smee.http.port }};

@@ -1,6 +1,6 @@
-# Tinkerbell Stack
+# Dragonfly Stack
 
-This chart installs the full Tinkerbell stack.
+This chart installs the full Dragonfly stack.
 
 ## TL;DR
 
@@ -8,13 +8,14 @@ This chart installs the full Tinkerbell stack.
 helm dependency build stack/
 trusted_proxies=$(kubectl get nodes -o go-template-file=stack/kubectl.go-template)
 LB_IP=<IP_ADDRESS>
-helm install stack-release stack/ --create-namespace --namespace tink --wait --set "global.trustedProxies={${trusted_proxies}}" --set "global.publicIP=$LB_IP"
+helm install dragonfly stack/ --create-namespace --namespace tink --wait --set "global.trustedProxies={${trusted_proxies}}" --set "global.publicIP=$LB_IP"
 ```
 
 ## Introduction
 
-This chart boootraps a full Tinkerbell stack on a Kubernetes cluster using the Helm package manager. The Tinkerbell stack consists of the following components:
+This chart boootraps a full Dragonfly + Tinkerbell stack on a Kubernetes cluster using the Helm package manager. The stack consists of the following components:
 
+- [Dragonfly](https://github.com/zorlin/dragonfly)
 - [Smee](https://github.com/tinkerbell/smee)
 - [Hegel](https://github.com/tinkerbell/hegel)
 - [Tink](https://github.com/tinkerbell/tink)
@@ -62,7 +63,7 @@ helm uninstall stack-release --namespace tink-system
 To upgrade the `stack-release` deployment:
 
 ```bash
-helm upgrade stack-release stack/ --namespace tink-system --wait
+helm upgrade dragonfly stack/ --namespace tink --wait
 ```
 
 ## Parameters
