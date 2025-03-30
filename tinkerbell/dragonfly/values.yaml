@@ -30,3 +30,17 @@ rbac:
   name: dragonfly-role # or dragonfly-cluster-role
   bindingName: dragonfly-rolebinding # or dragonfly-cluster-rolebinding
 nodeSelector: {}
+
+ingress:
+  enabled: true
+  className: "traefik"
+  annotations: {}
+  hosts:
+    - host: dragonfly.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: dragonfly-tls
+  #    hosts:
+  #      - dragonfly.local
