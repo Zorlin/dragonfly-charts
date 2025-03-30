@@ -25,7 +25,7 @@ stack:
   image: nginx:1.27.2
 
   hook:
-    enabled: true
+    enabled: false # We handle Hook downloads via the Dragonfly server
     name: hook-files
     port: 8080
     image: bash:5.2.37
