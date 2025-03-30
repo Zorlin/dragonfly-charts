@@ -16,7 +16,7 @@ persistence:
   localPersistentVolume:
     storageClassName: local-storage
     path: /var/lib/dragonfly
-    name: dragonfly-artifacts
+    name: dragonfly-data
     accessModes:
       - ReadWriteMany
     size: 20Gi
