@@ -15,13 +15,13 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
-      env:
-        - name: DRAGONFLY_BASE_URL
-          value: "http://{{ .Values.global.publicIP }}:{{ .Values.service.port }}"
       containers:
         - name: {{ .Values.name }}
           image: {{ .Values.image }}
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          env:
+            - name: DRAGONFLY_BASE_URL
+              value: "http://{{ .Values.global.publicIP }}:{{ .Values.service.port }}"
           volumeMounts:
             - name: {{ .Values.name }}-data
               mountPath: /var/lib/dragonfly
