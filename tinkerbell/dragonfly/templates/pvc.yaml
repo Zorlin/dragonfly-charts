@@ -6,11 +6,11 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
 spec:
   accessModes:
-    {{- toYaml .Values.localPersistentVolume.accessModes | nindent 4 }}
+    {{- toYaml .Values.persistence.accessModes | nindent 4 }}
   resources:
     requests:
-      storage: {{ .Values.localPersistentVolume.size }}
-  storageClassName: {{ .Values.localPersistentVolume.storageClassName }}
+      storage: {{ .Values.persistence.size }}
+  storageClassName: {{ .Values.persistence.storageClass }}
   selector:
     matchLabels:
       app: {{ .Values.name }}

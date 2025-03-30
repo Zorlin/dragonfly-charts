@@ -13,14 +13,11 @@ persistence:
   storageClass: local-storage
   size: 20Gi
   existingClaim: ""
-  localPersistentVolume:
-    storageClassName: local-storage
-    path: /var/lib/dragonfly
-    name: dragonfly-data
-    accessModes:
-      - ReadWriteMany
-    size: 20Gi
-    extraLabels: {}
+  path: /var/lib/dragonfly
+  name: dragonfly-data
+  accessModes:
+    - ReadWriteMany
+  extraLabels: {}
 resources:
   limits:
     cpu: 2000m
