@@ -17,6 +17,30 @@ data:
     http {
       server {
         listen 3000;
+        
+        # Special configuration for Server-Sent Events
+        location /api/events {
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $host;
+          
+          # Critical SSE settings
+          proxy_set_header Connection '';  # Required for keepalive connections
+          proxy_http_version 1.1;          # Required for keepalive connections
+          
+          # Disable buffering to ensure events stream immediately
+          proxy_buffering off;
+          
+          # Increase timeouts for long-lived connections
+          proxy_read_timeout 86400s;       # 24 hours timeout
+          proxy_send_timeout 86400s;       # 24 hours timeout
+          
+          resolver $POD_NAMESERVER;
+          set $dragonfly_dns {{ .Values.dragonfly.server.name }}.{{ .Release.Namespace }}.svc.{{ .Values.stack.clusterDomain }}.; # needed in Kubernetes for dynamic DNS resolution
+          
+          proxy_pass http://$dragonfly_dns:{{ .Values.dragonfly.server.service.port }};
+        }
+        
         location / {
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
