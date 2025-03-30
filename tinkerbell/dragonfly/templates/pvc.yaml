@@ -6,17 +6,11 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
 spec:
   accessModes:
-    - ReadWriteMany
+    {{- toYaml .Values.localPersistentVolume.accessModes | nindent 4 }}
   resources:
     requests:
-      storage: {{ .Values.persistence.size }}
-  storageClassName: {{ .Values.persistence.storageClass }}
-  volumeMode: Filesystem
-  localPersistentVolume:
-    storageClassName: local-storage
-    path: /var/lib/dragonfly
-    name: dragonfly-data
-    accessModes:
-      - ReadWriteMany
-    size: 20Gi
-    extraLabels: {}
+      storage: {{ .Values.localPersistentVolume.size }}
+  storageClassName: {{ .Values.localPersistentVolume.storageClassName }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
