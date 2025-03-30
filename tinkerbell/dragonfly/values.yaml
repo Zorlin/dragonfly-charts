@@ -16,7 +16,7 @@ persistence:
   path: /var/lib/dragonfly
   name: dragonfly-data
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   extraLabels: {}
 resources:
   limits:
