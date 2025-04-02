@@ -18,6 +18,7 @@ spec:
       serviceAccountName: {{ .Values.name }}
       containers:
         - name: {{ .Values.name }}
+          command: ["dragonfly", "server"]
           image: {{ .Values.image }}
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           env:
