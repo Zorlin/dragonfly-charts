@@ -5,8 +5,8 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: dragonfly-cluster-roles
+  name: dragonfly-cluster-role
 subjects:
   - kind: ServiceAccount
-    name: {{ .Values.name }}
-    namespace: {{ .Release.Namespace | quote }}
+    name: dragonfly
+    namespace: tink
