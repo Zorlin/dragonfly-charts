@@ -18,4 +18,6 @@ subjects:
   - kind: ServiceAccount
     name: {{ .Values.name }}
     namespace: {{ .Release.Namespace | quote }}
+  - kind: ClusterRole
+    name: dragonfly-cluster-role
 {{- end }}
