@@ -11,8 +11,5 @@ dependencies:
 - name: hegel
   repository: file://../hegel
   version: 0.4.1
-- name: dragonfly
-  repository: file://../dragonfly
-  version: 0.1.0
-digest: sha256:8806aa6c86691202e3e7cb1c31accc9fc3492d34f0295934aba835aeefeb695f
-generated: "2025-03-30T07:33:15.487911852+01:00"
+digest: sha256:b38111d9a09a79e26aa5e75b7ed7ac484145ea9be694489761f38d635b8120f4
+generated: "2025-04-03T07:35:03.940194675+01:00"
