@@ -59,9 +59,9 @@ spec:
             >/etc/nginx/nginx.conf
           exec nginx -g 'daemon off;'
         ports:
-        - containerPort: {{ .Values.dragonfly.deployment.port }}
+        - containerPort: 3000
           protocol: TCP
-          name: {{ .Values.dragonfly.deployment.portName }}
+          name: dragonfly
         - containerPort: {{ .Values.hegel.deployment.port }}
           protocol: TCP
           name: {{ .Values.hegel.deployment.portName }}
