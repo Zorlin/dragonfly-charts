@@ -1,15 +1,9 @@
 {{- if .Values.deploy }}
-{{- $roleType := .Values.rbac.type }}
-{{- if .Values.global }}
-{{- $roleType = coalesce .Values.global.rbac.type .Values.rbac.type }}
-{{- end }}
 apiVersion: rbac.authorization.k8s.io/v1
-kind: {{ $roleType }}
+kind: Role
 metadata:
   name: {{ .Values.rbac.name }}
-  {{- if eq $roleType "Role" }}
   namespace: {{ .Release.Namespace | quote }}
-  {{- end }}
 rules:
   # Grant full control over ALL resources within this namespace
   # This is a lot, but is needed for Dragonfly to be able to manage Helm releases.
