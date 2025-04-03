@@ -22,6 +22,6 @@ rules:
     verbs: ["get", "watch", "list", "create", "update", "delete", "patch"]
   # Allow access to getting services in tink namespace
   - apiGroups: [""]
-    resources: ["services"]
-    verbs: ["get"]
+    resources: ["services", "namespaces"]
+    verbs: ["get", "watch", "list"]
 {{- end }}

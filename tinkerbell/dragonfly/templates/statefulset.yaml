@@ -24,6 +24,8 @@ spec:
           env:
             - name: DRAGONFLY_BASE_URL
               value: "http://{{ .Values.global.publicIP }}:{{ .Values.service.port }}"
+            - name: DRAGONFLY_INSTALLED # TODO - This seems brittle, we should do this without an env var
+              value: "true"
           volumeMounts:
             - name: {{ .Values.name }}-data
               mountPath: /var/lib/dragonfly
