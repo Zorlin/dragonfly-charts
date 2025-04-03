@@ -1,16 +1,12 @@
 {{- if .Values.deploy }}
-{{- $roleType := .Values.rbac.type }}
-{{- end }}
 apiVersion: rbac.authorization.k8s.io/v1
-kind: {{ printf "%sBinding" $roleType }}
+kind: RoleBinding
 metadata:
   name: {{ .Values.rbac.bindingName }}
-  {{- if eq $roleType "Role"  }}
   namespace: {{ .Release.Namespace | quote }}
-  {{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: {{ $roleType }}
+  kind: Role
   name: {{ .Values.rbac.name }}
 subjects:
   - kind: ServiceAccount
