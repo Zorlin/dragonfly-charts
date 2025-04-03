@@ -196,8 +196,8 @@ spec:
   externalTrafficPolicy: Local
   {{- end }}
   ports:
-  - name: {{ .Values.dragonfly.name }}
-    port: {{ .Values.dragonfly.deployment.port }}
+  - name: dragonfly
+    port: 3000
     protocol: TCP
   - name: {{ .Values.hegel.name }}
     port: {{ .Values.hegel.deployment.port }}
