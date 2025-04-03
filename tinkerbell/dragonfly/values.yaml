@@ -1,7 +1,7 @@
 deploy: true
 name: dragonfly
 image: docker.io/zorlin/dragonfly:v0.1.0
-imagePullPolicy: IfNotPresent
+imagePullPolicy: Always # Change to IfNotPresent after release.
 replicas: 1
 service:
   port: 3000
